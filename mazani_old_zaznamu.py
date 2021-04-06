@@ -1,12 +1,14 @@
 import pymysql.cursors
 import shutil
 import os
+
+## db connection
 connection = pymysql.connect(host='localhost',
                              user='root',
                              password='pwd',
                              db='system_mail',
                              cursorclass=pymysql.cursors.DictCursor)
-
+ ## select from table and row datas
 cursor = connection.cursor()
 sql="SELECT id, name, state FROM domain WHERE state='2'"
 cursor.execute(sql)
@@ -19,6 +21,7 @@ deleted = set(row['name'] for row in cursor.fetchall())
 cursor.execute("select distinct name from domain where state != 2")
 active = set(row['name'] for row in cursor.fetchall())
 
+#delete not needed datas
 to_delete = deleted - active
 
 print('Printing each domain record', "\n")
@@ -32,6 +35,7 @@ for row in records:
     name = row["name"]
     state = row["state"]
 
+    #delete file according to fileter and selected ID from table
     if to_delete:
         try:
             if os.path.exists('/data/sa/' + name):
@@ -47,7 +51,7 @@ for row in records:
     else:
         print('no records for deleting found')
         print('domain', name)
-        print('hast state', state, "\n")
+        print('hasnt state', state, "\n")
 
 quit()
 connection.close()
