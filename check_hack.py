@@ -17,7 +17,7 @@ warning_countries = ['US', 'CA', 'DE', 'GB']
 safe_countries = ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE']
 
 # List of user ids to be ignored
-ignored_users = ['egeefpbd', 'egeegaxm', 'egeelf3a', 'egeekqn5', 'dddddffi']  # replace with actual uids to ignore
+ignored_users = ['usr', 'usr', 'usr', 'usr', 'usr']  # replace with actual uids to ignore
 
 # Function to fetch country code from IP address using an IP Geolocation API.
 
@@ -99,7 +99,7 @@ signal.signal(signal.SIGINT, signal_handler)
 try:
     # Cursor to fetch initial uids based on provided IP addresses.
     initial_uid_cursor = connection.cursor(pymysql.cursors.DictCursor)
-    initial_ips = ['164.92.228.120', '159.242.234.182', '41.251.27.126', '164.92.196.29'] 
+    initial_ips = ['ip_addr', 'ip_addr', 'ip_addr', 'ip_addr'] 
     for ip in initial_ips:
         print(f"Starting with IP: {ip}")  # Change the message to distinguish from the recursive calls
         initial_uid_cursor.execute(f"SELECT DISTINCT uid FROM LoginEventEntity WHERE ipAddress = '{ip}';")
